@@ -36,6 +36,14 @@ const Todo = () => {
 			});
 		});
 	};
+	const updateTodo = (id, newText) => {
+		setTodoList((prevTodo) => {
+			return prevTodo.map((todo) => {
+				if (todo.id === id) return { ...todo, text: newText };
+				return todo;
+			});
+		});
+	};
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todoList));
 	}, [todoList]);
@@ -74,6 +82,7 @@ const Todo = () => {
 							isComplete={item.isComplete}
 							deleteTodo={deleteTodo}
 							toggle={toggle}
+							updateTodo={updateTodo}
 						/>
 					);
 				})}
